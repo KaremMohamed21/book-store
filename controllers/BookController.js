@@ -76,7 +76,7 @@ exports.getBookById = catchAsync(async (req, res, next) => {
 
 // update book by Id
 exports.updateBookById = catchAsync(async (req, res, next) => {
-  if (!req.files) {
+  if (!req.file) {
     req.body.coverImage = req.body.currentImageName;
   }
 
