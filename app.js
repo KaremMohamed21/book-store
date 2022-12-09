@@ -21,6 +21,9 @@ app.use(cookieParser());
 // router
 app.use("/api/v1/category", categoryRouter);
 app.use("/api/v1/book", bookRouter);
+app.get("/", (req, res) => {
+  res.send("<head> <title> Book Store API </title> </head> <h1>Welcome to Book Store API</h1>");
+});
 
 // page not found
 app.all("*", (req, res, next) => {

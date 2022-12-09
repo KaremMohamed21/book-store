@@ -1,6 +1,6 @@
 const { model, Schema } = require("mongoose");
 
-const bookSchema = Schema({
+const bookSchema = new Schema({
   title: {
     type: String,
     required: [true, "Book title is required"],
@@ -41,7 +41,7 @@ const bookSchema = Schema({
 });
 
 // Update at default
-bookSchema.pre("save", (next) => {
+bookSchema.pre("save", function (next) {
   if (!this.isModified()) return next();
 
   this.updatedAt = Date.now();

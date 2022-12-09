@@ -7,10 +7,10 @@ const multer = require("multer");
 // Create disk storage
 const multerStorage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "/public/imgs");
+    cb(null, "public/imgs");
   },
   filename: (req, file, cb) => {
-    req.body.coverImage = `book-${Data.now()}-cover`;
+    req.body.coverImage = `book-${Date.now()}-cover.${file.mimetype.split("/")[1]}`;
     cb(null, req.body.coverImage);
   }
 });
@@ -76,6 +76,10 @@ exports.getBookById = catchAsync(async (req, res, next) => {
 
 // update book by Id
 exports.updateBookById = catchAsync(async (req, res, next) => {
+  if (!req.files) {
+    req.body.coverImage = req.body.currentImageName;
+  }
+
   const book = await Book.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
     runValidators: true
