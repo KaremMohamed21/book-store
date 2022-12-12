@@ -29,7 +29,6 @@ exports.addToCart = catchAsync(async (req, res, next) => {
   }
 
   let finalData = await redisClient.hGetAll(cartId);
-  console.log(finalData);
 
   // increase item quantity
   res.status(200).json({
