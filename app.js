@@ -8,6 +8,7 @@ const globalErrorHandler = require("./utils/globalErrorHandler");
 const categoryRouter = require("./routes/categoryRoutes");
 const bookRouter = require("./routes/bookRoutes");
 const userRouter = require("./routes/userRoutes");
+const cartRouter = require("./routes/cartRoutes");
 
 const app = express();
 
@@ -23,6 +24,7 @@ app.use(cookieParser());
 app.use("/api/v1/category", categoryRouter);
 app.use("/api/v1/book", bookRouter);
 app.use("/api/v1/user", userRouter);
+app.use("/api/v1/cart", cartRouter);
 app.get("/", (req, res) => {
   res.send("<head> <title> Book Store API </title> </head> <h1>Welcome to Book Store API</h1>");
 });
